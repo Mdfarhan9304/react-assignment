@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-slate-800 to-slate-700  h-screen w-full text-white">
+    <div className=" bg-slate-800 my-5 w-full text-white">
 
 <Routes>
     <Route path="/" element={<Cards data={show}  />} />
