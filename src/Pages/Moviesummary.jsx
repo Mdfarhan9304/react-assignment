@@ -33,7 +33,7 @@ const Moviesummary = () => {
     setTicketConfirmed(true);
   };
   return (
-    <div className="bg-slate-800 w-full text-white flex justify-center items-center h-full">
+    <div className="bg-slate-800 w-full text-white flex md:justify-center md:items-center md:h-screen h-full">
       {loading ? (
         <p className="flex items-center justify-center text-white font-bold">
           Loading...
