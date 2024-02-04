@@ -8,7 +8,6 @@ const Moviesummary = () => {
   const [loading, setLoading] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [TicketConfirmed, setTicketConfirmed] = useState(false);
-  
 
   useEffect(() => {
     const fetchShowDetails = async () => {
@@ -17,7 +16,7 @@ const Moviesummary = () => {
         const data = await response.json();
         setShowDetails(data);
         setLoading(false);
-      } catch (error) {
+      } catch (error) { 
         console.error("Error fetching show details:", error);
         setLoading(false);
       }
@@ -34,7 +33,7 @@ const Moviesummary = () => {
     setTicketConfirmed(true);
   };
   return (
-    <div className="bg-gradient-to-br from-slate-800 to-slate-700 w-full h-screen text-white flex justify-center items-center">
+    <div className="bg-gradient-to-br from-slate-800 to-slate-700 w-full h-full py-10 text-white flex justify-center items-center">
       {loading ? (
         <p className="flex items-center justify-center text-white font-bold">
           Loading...
@@ -44,32 +43,40 @@ const Moviesummary = () => {
           <img
             src={showDetails.image?.medium}
             alt=""
-            className="w-[350px] rounded-lg mx-auto"
+            className="w-[250px] rounded-lg mx-auto"
           />
           <div className="w-full md:w-1/2 px-8">
-            <div className="font-bold text-4xl mb-5">{showDetails.name}</div>
-            {showDetails.summary}
-            {isFormVisible && 
-            <Formcomponent name={showDetails.name} language={showDetails.language} date={showDetails.premiered} />
-            
-            }
+            <div className="font-bold text-4xl mb-5 mt-5 flex justify-center">{showDetails.name}</div>
+           {isFormVisible===false && showDetails.summary} 
+            {isFormVisible && (
+              <Formcomponent
+                name={showDetails.name}
+                language={showDetails.language}
+                date={showDetails.premiered}
+              />
+            )}
 
-
-            
-            <button
+            {isFormVisible===false && <button
               className="w-full text-white bg-black p-2 rounded-lg font-medium shadow-sm shadow-white mt-5"
               onClick={toggleform}
             >
               Book now
-            </button>
+            </button>}
 
-            {isFormVisible && 
-            <button className="w-full text-white bg-black p-2 rounded-lg font-medium shadow-sm shadow-white mt-5 " onClick={handleConfirmBooking}>Confirm your booking</button>
-            }
+            {isFormVisible && (
+              <button
+                className="w-full text-white bg-black p-2 rounded-lg font-medium shadow-sm shadow-white mt-5 "
+                onClick={handleConfirmBooking}
+              >
+                Confirm your booking
+              </button>
+            )}
 
-{TicketConfirmed && 
-            <p className="text-green-500 mx-auto mt-2 font-bold">Your ticket is confirmed! ✔️ Enjoy the show!</p>
-            }
+            {TicketConfirmed && (
+              <p className="text-green-500 mx-auto mt-2 font-bold">
+                Your ticket is confirmed! ✔️ Enjoy the show!
+              </p>
+            )}
           </div>
         </div>
       )}
