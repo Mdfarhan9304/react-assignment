@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div className=" bg-slate-800 my-5 w-full text-white">
+    <div className=" bg-slate-800 my-5 w-full h-full text-white">
 
 <Routes>
     <Route path="/" element={<Cards data={show}  />} />
